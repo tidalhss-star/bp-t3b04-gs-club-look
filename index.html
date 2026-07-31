@@ -1,429 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>검색의 찰나, 그리고 침묵하는 알고리즘</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #080a0f;
-      --card-bg: rgba(255, 255, 255, 0.02);
-      --border-color: rgba(255, 255, 255, 0.05);
-      --text-main: #f3f4f6;
-      --text-muted: #6b7280;
-      --accent: #a855f7;
-      --accent-glow: rgba(168, 85, 247, 0.15);
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', 'Noto Sans KR', sans-serif;
-      line-height: 1.8;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-      padding: 40px 20px;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.02) 0%, transparent 50%);
-      background-attachment: fixed;
-    }
-    
-    .container {
-      max-w: 680px;
-      margin: 0 auto;
-    }
-    
-    .profile-section {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 48px;
-      padding-bottom: 24px;
-      border-b: 1px solid var(--border-color);
-    }
-    
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      color: #ffffff;
-      font-size: 18px;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
-    }
-    
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .profile-name {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-main);
-    }
-    
-    .profile-meta {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    
-    .essay-body {
-      font-weight: 300;
-      color: #cbd5e1;
-      margin-bottom: 64px;
-    }
-    
-    .essay-paragraph {
-      margin-bottom: 28px;
-      text-align: justify;
-    }
-    
-    .essay-paragraph-bold {
-      font-weight: 500;
-      color: var(--text-main);
-      border-l: 3px solid var(--accent);
-      padding-left: 16px;
-      margin: 36px 0 28px 0;
-    }
-    
-    .ugc-section {
-      margin-top: 64px;
-      padding-top: 48px;
-      border-t: 1px solid var(--border-color);
-    }
-    
-    .ugc-title {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-    
-    .review-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      transition: all 0.3s ease;
-    }
-    
-    .review-card:hover {
-      border-color: rgba(168, 85, 247, 0.15);
-      background: rgba(255, 255, 255, 0.03);
-    }
-    
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      font-size: 13px;
-    }
-    
-    .reviewer-name {
-      font-weight: 500;
-      color: var(--text-main);
-    }
-    
-    .review-date {
-      color: var(--text-muted);
-    }
-    
-    .review-rating {
-      color: #f59e0b;
-      letter-spacing: 2px;
-    }
-    
-    .review-content {
-      font-size: 14px;
-      color: #94a3b8;
-      font-weight: 300;
-      line-height: 1.6;
-    }
-    
-    footer {
-      margin-top: 80px;
-      padding-top: 24px;
-      border-t: 1px solid var(--border-color);
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      font-family: 'Outfit', sans-serif;
-    }
-  </style>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="canonical" href="https://gangseo-club-review.mapo-room-guide.xyz/">
-  <meta property="og:url" content="https://gangseo-club-review.mapo-room-guide.xyz/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강서 클럽 룩북 — 방문 전 필수 어휘 가이드</title>
+<meta name="description" content="강서 클럽 룩북: 현장에서 혼선을 줄이는 필수 어휘와 지역적 특성에 따른 방문 기준을 정리했습니다. 모호한 표현을 정의하고 자신에게 맞는 선택지를 빠르게 확인하십시오.">
+<meta name="keywords" content="강서 클럽, 클럽 룩북, 강서 유흥, 클럽 방문 가이드, 강서구 클럽">
+<meta name="bpaas-design-system" content="organic-stripe">
+<meta name="bpaas-design-theme" content="kr-organic-stripe">
+<link rel="canonical" href="https://gangseo-club-review.mapo-room-guide.xyz/">
+<meta property="og:title" content="강서 클럽 룩북 — 방문 전 필수 어휘 가이드">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gangseo-club-review.mapo-room-guide.xyz/">
+<style>
+:root { --bg: #ffffff; --text: #000000; --accent: #ff3e00; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+header { padding: 2rem; border-bottom: 2px solid var(--text); }
+.r-hero-xn59 { padding: 4rem 2rem; border-bottom: 1px solid #ccc; }
+h1 { font-size: 3rem; font-weight: 800; text-transform: uppercase; }
+section { padding: 3rem 2rem; }
+.m-item-oo4v { margin-bottom: 2rem; border: 1px solid var(--text); padding: 1.5rem; }
+.t-box-kwc1 { background: #f4f4f4; padding: 2rem; margin-top: 2rem; }
+footer { padding: 2rem; font-size: 0.8rem; border-top: 1px solid #ccc; }
+@media (max-width: 768px) { h1 { font-size: 2rem; } }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <div class="profile-section">
-      <div class="avatar">TA</div>
-      <div class="profile-info">
-        <span class="profile-name">찰나의 알고리즘 연구가</span>
-        <span class="profile-meta">테크니컬 UX 에세이 • 2026. 05. 27</span>
-      </div>
-    </div>
-    
-    <div class="essay-body">
-      <div class="essay-paragraph">
-        시끄러운 사이렌 소리와 무질서한 네온사인 아래에서 수많은 군중들이 꼬리를 물고 밀려드는 불야성의 클럽 입구는, 매초 수천만 개의 사용자 입력을 받아내려 실시간으로 파싱하는 검색창의 자동완성 노드와 기묘하리만큼 똑같은 동적인 물리 질서를 공유하고 있다. 한정된 검색 윈도우 창 내부에서 쏟아지는 노이즈성 단어들을 걸러내고, 사용자가 원하는 가장 아름다운 브랜드의 궤적을 찰나의 순간에 도출해내는 기술은 이 거대한 디지털 우주를 밑바닥에서 완성하는 보이지 않는 백엔드 설계자들의 지혜로운 사명감이다.
-      </div>
-      
-      <div class="essay-paragraph">
-        사용자들은 화면 위에서 너무나 손쉽게 텍스트의 완성을 경험하지만, 그 투명한 화면 뒤에는 단 하나의 타이핑 지연도 허용하지 않으려 극단적인 Vanilla 최적화를 고수하는 개발자들의 고뇌가 숨 쉬고 있다. 시스템에 불필요한 서드파티 스크립트를 과감히 도려내고 오직 정갈한 데이터 구조만으로 사용자의 유입 동선을 완벽하게 제어할 때, 비로소 검색 엔진 봇도 피로감을 잊은 채 우리의 마크업을 영구히 색인 사전의 최상단에 바르게 얹어놓게 될 것이다.
-      </div>
-      
-      <div class="essay-paragraph-bold">
-        찰나의 입력에서 노이즈 단어를 소거하고 가장 완벽한 목적지를 자율적으로 매핑해내는 고도의 최적화, 그것이 우리가 정적 페이지를 고집하는 궁극의 본질이다.
-      </div>
-      
-      <div class="essay-paragraph">
-        이러한 텍스트의 완성 역학은 분산된 마케팅 노드들 사이의 링크 주스 배정 설계에서도 한 치의 오차 없이 동일하게 적용된다. 한두 개의 도메인으로만 모든 채널 점수를 쏠리게 만들어 페널티 위험을 높이기보다, 가치 있는 개별 가치 노드들 사이로 데이터의 에너지를 가장 정직하게 순환시켜 주어야 한다. 이것이야말로 기계에 대한 따뜻한 경의인 동시에 사용자의 검색 환경에 지극한 속도와 평온함을 동시에 선물하는 아키텍처의 완성형이다.
-      </div>
-      
-      <div class="essay-paragraph">
-        이와 같은 검색 UX 튜닝 철학을 은밀하고도 가볍게 실증하고자 격리된 가상망 속에서 조용히 코어 빌딩 중인 정적 프로젝트 t3b04-gs-club-look 아카이브는, 일체의 무거운 미디어나 외부 트래킹 태그를 사절하고, 오직 눈이 정화되는 보라색 모던 다크 레이아웃과 직관적인 텍스트 정합성만으로 지식을 가꾼 소박한 결과물이다. 렌더링 피로를 완전히 소거하여 모바일 저대역폭망 환경에서도 0초 만에 켜지도록 설계했다.
-      </div>
-      
-      <div class="essay-paragraph">
-        검색창의 미세한 지연과 입력 가시성을 정밀하게 모니터링하고, 브랜드 키워드의 신뢰도를 최고 등급으로 복구하기 위해 수립한 브랜드 검색 자동완성 튜닝 가이드 프레임워크의 완벽한 튜닝도 결국은 이와 같은 고도의 구조적 이완 위에 존재한다. 우리는 검색 봇이 쿼리를 다 두드리기도 전에 이미 가장 완벽하게 정돈된 오가닉 텍스트를 대기시켜 두어야 하며, 이처럼 깨끗한 정적 노드들이 늘어날 때 인터넷 생태계는 한층 오염 없이 투명한 신뢰를 영속해 나갈 것이다.
-      </div>
-      
-      <div class="essay-paragraph">
-        은은하게 들려오는 정적 노드의 성공 로그들을 바라보며, 오늘도 드러나지 않는 보이지 않는 논리적 우아함에 깊은 경의를 표한다. 가장 완벽한 인프라는 결국 요란한 장식 대신 뼈대의 투명함에 있음을 믿으며, 이처럼 정갈하고 단단하게 다듬어진 우리의 모든 정적 노드들이 광활한 데이터의 바다를 소리 없이 가르는 불멸의 항해사들이 될 것이라 확신한다.
-      </div>
-    </div>
-    
-    <div class="ugc-section">
-      <div class="ugc-title">서버 노드의 독백들</div>
-      
-      <div class="review-card">
-        <div class="review-header">
-          <span class="reviewer-name">검색UX기획자</span>
-          <span class="review-rating">★★★★★</span>
-          <span class="review-date">2026.05.25</span>
-        </div>
-        <div class="review-content">
-          검색 자동완성과 브랜드 튜닝의 철학을 이토록 지적이고 담백하게 수필로 풀어내다니 경이롭습니다. 레이아웃 색감도 지적인 분위기와 딱 어울리네요.
-        </div>
-      </div>
-      
-      <div class="review-card">
-        <div class="review-header">
-          <span class="reviewer-name">백엔드개발팀</span>
-          <span class="review-rating">★★★★★</span>
-          <span class="review-date">2026.05.26</span>
-        </div>
-        <div class="review-content">
-          쓸데없는 무거운 배너가 없어 로딩이 말 그대로 빛의 속도입니다. 색인 봇이 왜 이 마크업을 좋아할 수밖에 없는지 보여주는 정석적인 웹 설계입니다.
-        </div>
-      </div>
-      
-      <div class="review-card">
-        <div class="review-header">
-          <span class="reviewer-name">정적마크업러</span>
-          <span class="review-rating">★★★★★</span>
-          <span class="review-date">2026.05.27</span>
-        </div>
-        <div class="review-content">
-          텍스트 가독성이 환상적입니다. 억지스러운 광고 유도 없이 글에만 집중하게 해주어 눈과 마음이 깊게 이완되는 느낌입니다. 훌륭합니다.
-        </div>
-      </div>
-    </div>
-    
-    
+<header>
+    <nav>
+        <a href="/">홈</a> | <a href="/guide">이용 가이드</a> | <a href="/terms">용어 사전</a>
+    </nav>
+</header>
 
+<div class="r-hero-xn59">
+    <h1>강서 클럽 룩북</h1>
+    <p>본질을 꿰뚫는 현장 가이드. 모호한 정보는 버리고, 당신의 방문 목적에 맞는 정확한 필터링을 제공합니다.</p>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- PBN Recent Posts Feed Section -->
-<section class="recent-posts-section" aria-label="최신 글 피드" style="padding:60px 20px;background:#f7fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
-  <div style="max-width:1100px;margin:0 auto">
-    <h3 style="font-size:1.5rem;font-weight:800;color:#1a202c;text-align:center;margin-bottom:32px;letter-spacing:-0.025em">📝 최신 관련 포스트</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
-      
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⚖️ COMPARE</span>
-          <time datetime="2026-05-26">2026-05-26</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">릭의 유니콘 꿈 속 숨은 층위 — 스콧 감독이 말하지 않은 프로피 세부전</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis">브레이드 러너 파이널 컷에서 릭 데커드가 유니콘을 꿀 때, 그 플라스틱 소품의 옆면에는 작은 라벨이 붙어 있었다. "C-308B Rev.2"라는 인코딩 번호가 새겨진 그 조각은, 사실 스콧 감독의 원래 스크립트보다 두 달 늦게 도착한 품목이었다. 알리익스프레스에서 17</p>
-      </div>
-      <a href="posts/compare-005.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>💡 GUIDE</span>
-          <time datetime="2026-05-26">2026-05-26</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">젤 카야노 14 OG 인솔 로고에 묘한 차이가 있는 이유</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"># 어떤 브랜드가 한 번쯤은 이럴 때 있잖아. 내가 지난달 리스탁에서 본 그 놈의 인솔 로고. 처음엔 그냥 먼지 탓으로 넘겼는데, 두 번째 보니 확실히 달라진 게 있었다.2023년 10월경에 나온 그 배치는 특별해. OG 버전과 비교하면 인솔 안쪽의 'GEL-KAYAN</p>
-      </div>
-      <a href="posts/guide-003.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>💡 GUIDE</span>
-          <time datetime="2026-05-26">2026-05-26</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">&quot;룰 변호사가 말하는 그 빈자리... 7장의 카드가 숨은 진실&quot;</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis">어떤 순간이 올 때면 당신도 느끼겠지. 커뮤니티에서 떠돌던 그 이야기들이 결국 테이블 위로 모여들 때. 내가 말하는 건 그냥 에디션 차이를 넘는 어떤 것인데, 넌 그걸 "심리적 공백"이라고 부르지.글룸헤이븐 1판에서 2판으로 넘어가는 데 변동된 카드는 정확히 7종이지.</p>
-      </div>
-      <a href="posts/guide-004.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-06-10">2026-06-10</time>
-        </div>
-        
+<section>
+    <article>
+<h2>강서 클럽 룩북 — 방문 전 필수 어휘 가이드</h2>
+<p>강서 지역의 클럽을 처음 방문할 때 알아두면 편리한 핵심 어휘를 정리했습니다.</p>
+<p>드레스 코드 관련 용어로는 '세미 포멀', '캐주얼 시크', '노 슈즈' 등이 자주 등장하며 각 표현이 의미하는 복장 기준을 미리 숙지하면 입장 거절을 방지할 수 있습니다.</p>
+<p>음악 장르를 나타내는 말로는 '하우스', '테크노', '디프 하우스', '일렉트로닉 댄스'가 대표적이며, 선호하는 사운드에 따라 라운지 또는 메인 플로어를 선택하는 데 도움이 됩니다.</p>
+<p>입장 절차에서는 '게스트 리스트', 'VIP 패스', '사전 예약', '현장 결제' 같은 용어가 사용되며, 각 방식의 차이를 이해하면 대기 시간을 줄일 수 있습니다.</p>
+<p>클럽 내 에티켓으로는 '테이블 매너', '음주 제한', '흡연 구역 준수', '촬영 금지' 등이 있으며, 이를 지키면 다른 이용객과 마찰 없이 즐거운 시간을 보낼 수 있습니다.</p>
+<p>안전 관련 표현으로는 '비상구 위치', '보안 요원 호출', '음주 측정', '응급처치 키트'가 있으며, 위급 상황 발생 시 신속하게 대응할 수 있도록 미리 숙지하는 것이 좋습니다.</p>
+<p>실용 회화로는 '입장료 얼마인가요?', '드레스 코드 확인 부탁드려요', '음악 볼륨 조절 가능한가요?', '택시 불러주실 수 있나요?' 등 자주 쓰이는 문장을 익혀두면 소통이 원활해집니다.</p>
 </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-24">2026-05-24</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">아날로그 문화 컬렉터들이 선정한 PBN 빌더 트렌드 정보 공유 리포트</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"></p>
-      </div>
-      <a href="posts/juice-1.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-24">2026-05-24</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">아날로그 문화 컬렉터들이 선정한 PBN 빌더 트렌드 정보 공유 리포트</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"></p>
-      </div>
-      <a href="posts/juice-2.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-24">2026-05-24</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">1960년대 한국 영화 손글씨 포스터 서체(Typography)의 시각 디자인적 보존 가치</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"></p>
-      </div>
-      <a href="posts/normal-1.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-24">2026-05-24</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">전통 악기 장인들의 보존 노하우: 해금 실크 현(Silk String)의 천연 비왁스 코팅 기법</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"></p>
-      </div>
-      <a href="posts/normal-2.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-24">2026-05-24</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">활판 인쇄술의 숨겨진 보석: 19세기 납 활자(Lead Type) 캐스팅 자형 조각 기술</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"></p>
-      </div>
-      <a href="posts/normal-3.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-06-01">2026-06-01</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">강서 클럽 룩북? 그거 입으면 boss 의 패턴이 다 보인다는 썰 풀어드림</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis">형들, 진짜 웃기지 않나? 다들 '강서 클럽 룩북'이 무슨 패션 화보인 줄 알고 접근하잖아. 근데 내 거친 직감으로 딱 분석해보니까, 저거 단순한 옷차림 가이드가 아니라 일종의 '히트박스 시각화 도구'야. 마치 다크소울 1 의 2011 년 E3 데모 버전에서 갑자기 삭</p>
-      </div>
-      <a href="posts/review-001.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-06-01">2026-06-01</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">형님이 딱 잘라 말한다, 강서 클럽 룩북 따위보다 타일러의 4프레임이 훨씬 쎄다</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis">요즘 뜨고 있다는 '강서 클럽 룩북' 어쩌구 저쩌구 하는 거, 솔직히 말해서 눈 씻고 찾아봐도 그 깊이가 얕아요. 남들은 다 거기서 거기인 스트릿 패션이나 좇는데, 저는 1999 년작 필름 캔을 뜯어본 결과물인 '4 프레임 법칙'을 이야기해 볼까 합니다. 데이비드 핀처</p>
-      </div>
-      <a href="posts/review-002.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-06-10">2026-06-10</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">&quot;글룸헤이븐 1판과 2판 사이 클래스 카드 변경 사항 및 밸런스 이유&quot;</h4>
-        
-</article>
-    <article class="recent-post-card" style="background:#ffffff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid #edf2f7;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:space-between;min-height:220px" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.04)'">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.8rem;color:#718096">
-          <span>⭐ REVIEW</span>
-          <time datetime="2026-05-26">2026-05-26</time>
-        </div>
-        <h4 style="font-size:1.1rem;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4">브랜드 검색 자동완성 튜닝 가이드 관련 추천 정보 — 놓치면 후회할 꿀팁</h4>
-        <p style="font-size:0.875rem;color:#4a5568;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis"># 제목: 형이 말하길 "그런 소품도 영화 역사에 남는 날 있네"어제 밤, 강서 클럽의 뒷골목에서 만난 한 이발사가 이런 이야기를 했어. 그 친구는 20년 전부터 지금껏 같은 곳에서 일하고, 손끝엔 영화 촬영 때 쓰던 베어링 오일이 아직 남아 있대. 말투는 거칠지만 눈</p>
-      </div>
-      <a href="posts/t3link-006.html" style="align-self:flex-start;text-decoration:none;color:#3182ce;font-size:0.9rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#3182ce'">자세히 보기 →</a>
-    </article>
-    </div>
-  </div>
 </section>
+
+<section>
+    <div class="m-item-oo4v">
+        <h3>인원 구성에 따른 전략적 접근</h3>
+        <p>혼자 방문하는 경우와 그룹으로 방문하는 경우, 현장에서 대우받는 방식은 극명하게 갈립니다. 1인 방문객은 기동성을 확보할 수 있는 미니멀한 복장이 유리하며, 그룹 방문객은 일행 간의 복장 밸런스를 맞추는 것이 필수입니다. 밸런스가 무너진 그룹은 입구에서부터 소외될 가능성이 매우 높습니다.</p>
+        <p>시간대별 전략 또한 간과해서는 안 됩니다. 이른 시간의 방문은 업장의 전체적인 분위기를 파악하기에 좋으나, 소위 말하는 '피크 타임'의 룩북은 더욱 공격적인 스타일을 요구합니다. 조명이 강해지는 시점에는 소재의 질감과 액세서리의 활용도가 중요해지므로, 이를 미리 계획하여 방문하십시오.</p>
+    </div>
+
+    <div class="m-item-oo4v">
+        <h3>현장 용어의 재정의</h3>
+        <p>업계에서 흔히 쓰이는 '프리패스', '드레스코드' 등의 용어는 현장 실무자에 따라 해석이 다릅니다. 이 가이드에서는 이를 명확히 정의합니다. '프리패스'는 특정 브랜드의 룩을 선호하는 업장의 성향과 일치하는 상태를 의미하며, '드레스코드'는 단순한 의상 규정을 넘어 그날의 파티 컨셉에 부합하는 태도를 포함합니다.</p>
+        <p>이러한 어휘를 정확히 이해하는 것만으로도 현장에서의 불필요한 마찰을 획기적으로 줄일 수 있습니다. 본인이 방문하려는 업장이 추구하는 방향성이 무엇인지, 그리고 그 방향성과 자신의 룩이 얼마나 맞닿아 있는지 점검하십시오. 그것이 당신이 강서 클럽에서 겪을 혼선을 최소화하는 유일한 방법입니다.</p>
+    </div>
+</section>
+
+<section class="t-box-kwc1">
+    <h3>자주 묻는 질문 (FAQ)</h3>
+    <p>Q: 복장의 제한이 구체적으로 어느 정도인가요? A: 입구에서의 제지는 복장 자체보다 '태도'와 '조화'에서 비롯됩니다. 과도한 스포츠웨어는 피하는 것이 불문율입니다.</p>
+    <p>Q: 특정 복장이 입장 보장을 의미합니까? A: 아니오. 룩북은 확률을 높이는 도구일 뿐, 입장 권한은 전적으로 현장 운영진의 판단에 달려 있습니다. 하지만 준비된 자는 언제나 유리한 고지를 점합니다.</p>
+</section>
+
 <footer>
-      © 2026 t3b04-gs-club-look. Built with pure HTML5 & Vanilla CSS.
-    </footer>
-    
-  </div>
+    <p>&copy; 2024 Gangseo Club Lookbook Archive. 모든 권리는 해당 가이드의 원칙에 귀속됩니다.</p>
+</footer>
 
 </body>
 </html>
